@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const motoRoutes = require('./routes/motoRoutes');
+const servicioRoutes = require('./routes/servicioRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 console.log("Montando rutas...");
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/motos', motoRoutes);
+app.use('/api/v1/servicios', servicioRoutes);
 
 app.get('/', (req, res) => res.send('¡API funcionando!'));
 app.use(errorHandler);
