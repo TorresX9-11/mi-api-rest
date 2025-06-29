@@ -1,5 +1,5 @@
-Guía rápida para probar la API de Usuarios y Motos en Postman
-============================================================
+Guía rápida para probar la API de Usuarios, Motos y Servicios en Postman
+=========================================================================
 
 1. Registro de usuario
 ----------------------
@@ -65,8 +65,57 @@ Guía rápida para probar la API de Usuarios y Motos en Postman
 - Headers:
   Authorization: Bearer <tu_token>
 
+8. Listar todos los servicios
+----------------------------
+- Método: GET
+- URL: http://localhost:3000/api/v1/servicios
+
+9. Obtener un servicio por ID
+----------------------------
+- Método: GET
+- URL: http://localhost:3000/api/v1/servicios/<id_servicio>
+
+10. Crear un servicio
+---------------------
+- Método: POST
+- URL: http://localhost:3000/api/v1/servicios
+- Headers:
+  Authorization: Bearer <tu_token>
+- Body (JSON):
+{
+  "motoId": "<id_de_moto>",
+  "descripcion": "Cambio de aceite",
+  "fecha": "2025-06-29",
+  "costo": 150
+}
+
+11. Actualizar un servicio
+-------------------------
+- Método: PUT
+- URL: http://localhost:3000/api/v1/servicios/<id_servicio>
+- Headers:
+  Authorization: Bearer <tu_token>
+- Body (JSON):
+{
+  "descripcion": "Cambio de llantas"
+}
+
+12. Eliminar un servicio
+-----------------------
+- Método: DELETE
+- URL: http://localhost:3000/api/v1/servicios/<id_servicio>
+- Headers:
+  Authorization: Bearer <tu_token>
+
 Notas:
 ------
 - Para obtener <id_de_moto>, primero haz un GET a /api/v1/motos y copia el campo _id de la moto.
+- Para obtener <id_servicio>, haz un GET a /api/v1/servicios y copia el campo _id del servicio.
 - El token JWT se obtiene al hacer login y debe ir en el header Authorization en los métodos protegidos (POST, PUT, DELETE).
 - Si tienes dudas, revisa la respuesta del servidor o los logs en consola.
+
+Notas para servicios:
+---------------------
+- El campo userId se asigna automáticamente con el usuario autenticado.
+- Para obtener <id_de_moto> y <id_servicio>, usa los endpoints de motos y servicios.
+- El campo fecha debe estar en formato YYYY-MM-DD.

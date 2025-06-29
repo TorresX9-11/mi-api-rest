@@ -21,7 +21,9 @@ exports.getServicioById = async (req, res, next) => {
 
 exports.createServicio = async (req, res, next) => {
   try {
-    const servicio = new Servicio(req.body);
+    // Asignar el userId del usuario autenticado
+    const servicioData = { ...req.body, userId: req.user.id };
+    const servicio = new Servicio(servicioData);
     await servicio.save();
     res.status(201).json(servicio);
   } catch (err) {
