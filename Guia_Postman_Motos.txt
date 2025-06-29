@@ -1,0 +1,72 @@
+Guía rápida para probar la API de Usuarios y Motos en Postman
+============================================================
+
+1. Registro de usuario
+----------------------
+- Método: POST
+- URL: http://localhost:3000/api/v1/users/register
+- Body (JSON):
+{
+  "username": "testuser",
+  "password": "123456"
+}
+
+2. Login de usuario (obtener token JWT)
+---------------------------------------
+- Método: POST
+- URL: http://localhost:3000/api/v1/users/login
+- Body (JSON):
+{
+  "username": "testuser",
+  "password": "123456"
+}
+- Copia el valor del campo "token" de la respuesta.
+
+3. Listar todas las motos
+-------------------------
+- Método: GET
+- URL: http://localhost:3000/api/v1/motos
+
+4. Obtener una moto por ID
+--------------------------
+- Método: GET
+- URL: http://localhost:3000/api/v1/motos/<id_de_moto>
+
+5. Crear una moto
+-----------------
+- Método: POST
+- URL: http://localhost:3000/api/v1/motos
+- Headers:
+  Authorization: Bearer <tu_token>
+- Body (JSON):
+{
+  "marca": "Honda",
+  "modelo": "CBR600RR",
+  "anio": 2023,
+  "color": "rojo",
+  "precio": 12000
+}
+
+6. Actualizar una moto
+----------------------
+- Método: PUT (requiere todos los datos aparte del que se edita)
+- URL: http://localhost:3000/api/v1/motos/<id_de_moto>
+- Headers:
+  Authorization: Bearer <tu_token>
+- Body (JSON):
+{
+  "color": "negro"
+}
+
+7. Eliminar una moto
+--------------------
+- Método: DELETE
+- URL: http://localhost:3000/api/v1/motos/<id_de_moto>
+- Headers:
+  Authorization: Bearer <tu_token>
+
+Notas:
+------
+- Para obtener <id_de_moto>, primero haz un GET a /api/v1/motos y copia el campo _id de la moto.
+- El token JWT se obtiene al hacer login y debe ir en el header Authorization en los métodos protegidos (POST, PUT, DELETE).
+- Si tienes dudas, revisa la respuesta del servidor o los logs en consola.
