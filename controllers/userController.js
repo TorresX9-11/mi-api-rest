@@ -18,9 +18,9 @@ exports.login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
+        if (!user) return res.status(400).json({ error: 'Usuario o contraseña invalidos' });
         const valid = await bcrypt.compare(password, user.password);
-        if (!valid) return res.status(400).json({ error: 'Contraseña incorrecta' });
+        if (!valid) return res.status(400).json({ error: 'Contraseña o usuario invalidos' });
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h'}    
         );
 
